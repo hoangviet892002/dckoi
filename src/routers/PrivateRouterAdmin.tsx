@@ -1,4 +1,4 @@
-import { RoleUser } from "@/models/enums/roleUser"
+import { RoleUser } from "@/models/enums/RoleUser"
 import { selectIsAuthenticated, selectRole } from "@/redux/slices/auth/authSlices"
 import { useAppSelector } from "@/redux/store/hook"
 import { ComponentType } from "react"
