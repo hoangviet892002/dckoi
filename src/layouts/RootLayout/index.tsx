@@ -20,7 +20,6 @@ const roleLayoutMap: Record<
   [RoleUser.DESIGNER]: LayoutDesigner,
   [RoleUser.CUSTOMER]: LayoutCustomer,
   [RoleUser.CONSTRUCTOR]: LayoutConstructor,
-  [RoleUser.GUEST]: undefined
 };
 
 const UNAUTHENTICATED_PAGES = ["Login", "Register"];
