@@ -1,4 +1,4 @@
-import { RoleUser } from "@/models/enums/roleUser";
+import { RoleUser } from "@/models/enums/RoleUser";
 import { useAppSelector } from "@/redux/store/hook";
 import React, { ReactElement, useMemo } from "react";
 import LayoutAdmin from "../layoutAdmin";
@@ -20,6 +20,7 @@ const roleLayoutMap: Record<
   [RoleUser.DESIGNER]: LayoutDesigner,
   [RoleUser.CUSTOMER]: LayoutCustomer,
   [RoleUser.CONSTRUCTOR]: LayoutConstructor,
+  [RoleUser.GUEST]: undefined
 };
 
 const UNAUTHENTICATED_PAGES = ["Login", "Register"];
