@@ -1,0 +1,57 @@
+export enum ProjectStatus {
+  REQUESTING = "REQUESTING",
+  PROCESSING = "PROCESSING",
+  DESIGNING = "DESIGNING",
+  CONSTRUCTING = "CONSTRUCTING",
+  FINISHED = "FINISHED",
+}
+
+export enum QuotationStatus {
+  OPEN = "OPEN",
+  PREVIEW = "PREVIEW",
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
+  CANCELLED = "CANCELLED",
+  UPDATING = "UPDATING",
+  CONFIRMED = "CONFIRMED",
+}
+
+export enum ContractStatus {
+  PROCESSING = "PROCESSING",
+  ACTIVE = "ACTIVE",
+  CANCELLED = "CANCELLED",
+}
+
+export enum ItemConstructionStatus {
+  OPENING = "OPENING",
+  PROCESSING = "PROCESSING",
+  DONE = "DONE",
+}
+
+export enum PaymentPhase {
+  DEPOSIT = "DEPOSIT",
+  ACCEPTANCE = "ACCEPTANCE",
+  PRE_CONSTRUCTING = "PRE_CONSTRUCTING",
+  CONSTRUCTING = "CONSTRUCTING",
+}
+
+export enum IssueStatus {
+  OPENING = "OPENING",
+  PREVIEWING = "PREVIEWING",
+  PROCESSING = "PROCESSING",
+  DONE = "DONE",
+}
+export enum MaintainceStatus {
+  REQUESTING = "REQUESTING",
+  OPENING = "OPENING",
+  PROCESSING = "PROCESSING",
+  DONE = "DONE",
+  CANCELLED = "CANCELLED",
+}
+
+export enum MaintainceTaskStatus {
+  OPENING = "OPENING",
+  PROCESSING = "PROCESSING",
+  PREVIEWING = "PREVIEWING",
+  DONE = "DONE",
+}
