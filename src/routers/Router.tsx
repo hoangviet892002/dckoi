@@ -82,7 +82,7 @@ const Routers = () => {
   const element = useRoutes([
     { path: "/", element: <MainLayout Pages={Home} /> },
     { path: "/contact", element: <MainLayout Pages={Contact} /> },
-    { path: "/login", element: <RootLayout Pages={Login} /> },
+    { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },
     { path: "/blogs", element: <MainLayout Pages={Blogs} /> },
     { path: "/blogs/:id", element: <MainLayout Pages={BlogsDetail} /> },
