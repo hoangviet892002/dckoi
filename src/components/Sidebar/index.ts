@@ -1,7 +1,7 @@
 import { Logo } from "./Logo";
 import { Sidebar } from "./Sidebar";
 import { Menu } from "./Menu";
-import { Submenu } from "./SubMenu";
+import { Submenu } from "./Submenu";
 import { Profile } from "./UserProfile";
 import { SidebarContext } from "./Sidebar";
 import { MenuItem } from "./MenuItem";
