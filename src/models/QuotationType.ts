@@ -61,4 +61,5 @@ export interface FieldQuotationDetailType {
   note: string;
   category: string;
   isService?: boolean;
+  uniqueId?: string;
 }

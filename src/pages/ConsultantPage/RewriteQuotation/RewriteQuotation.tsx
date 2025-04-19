@@ -20,7 +20,7 @@ import {
 import { Col, Modal, Row } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { v4 as uuidv4 } from "uuid";
 import Button from "@/components/ui/Button";
 import {
   EquipmentType,
@@ -149,6 +149,7 @@ const RewriteQuotation = () => {
       unit: "Chiếc",
       category: category,
       note: "",
+      uniqueId: uuidv4(),
     };
 
     const itemWorkClone = [...itemWork];
@@ -293,7 +294,7 @@ const RewriteQuotation = () => {
       return {
         ...work,
         items: work.items.map((item) =>
-          item.id === updatedItem.id ? updatedItem : item
+          item.uniqueId === updatedItem.uniqueId ? updatedItem : item
         ),
       };
     });

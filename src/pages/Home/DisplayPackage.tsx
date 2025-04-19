@@ -20,6 +20,21 @@ const DisplayPackage = ({
   pkg: PackageType[];
   itemPackage: PackageItem[];
 }) => {
+  const renderDetail = (value: any) => {
+    if (value.description && value.quantity) {
+      return (
+        <div className="flex flex-col">
+          <Text>{value.description}</Text>
+          <Text type="secondary">{value.quantity}</Text>
+        </div>
+      );
+    } else if (value.description) {
+      return <Text>{value.description}</Text>;
+    } else if (value.quantity) {
+      return <Text type="secondary">{value.quantity}</Text>;
+    }
+    return null;
+  };
   // Prepare columns for Ant Design Table
   const columns = [
     {
@@ -86,7 +101,7 @@ const DisplayPackage = ({
               className="font-bold py-1 px-3 rounded-full"
               icon={<CheckCircleFilled />}
             >
-              {value.description || value.quantity}
+              {renderDetail(value)}
             </Tag>
           );
         }

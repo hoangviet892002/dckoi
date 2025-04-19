@@ -19,6 +19,7 @@ import {
 import { Col, Modal, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   projectDetailActions,
@@ -119,6 +120,7 @@ const CreateQuotation = () => {
       unit: "Chiếc",
       category: category,
       note: "",
+      uniqueId: uuidv4(),
     };
 
     const itemWorkClone = [...itemWork];
@@ -260,18 +262,21 @@ const CreateQuotation = () => {
       category: category,
       note: "",
       isService: true,
+      uniqueId: uuidv4(),
     };
+
+    const newClonedItem = { ...newItem };
 
     const itemWorkClone = [...itemWork];
     const index = itemWorkClone.findIndex((item) => item.name === category);
-    // if exist category and id => update quantity
     const indexItem = itemWorkClone[index].items.findIndex(
-      (item) => item.id === newItem.id
+      (item) => item.id === newClonedItem.id
     );
+
     if (indexItem !== -1) {
       itemWorkClone[index].items[indexItem].quantity += 1;
     } else {
-      itemWorkClone[index].items.push(newItem);
+      itemWorkClone[index].items.push(newClonedItem);
     }
 
     setItemWork(itemWorkClone);
@@ -344,11 +349,13 @@ const CreateQuotation = () => {
   const [openTemplate, setOpenTemplate] = useState(false);
 
   const handleUpdateItem = (updatedItem: FieldQuotationDetailType) => {
+    console.log("updatedItem", updatedItem);
+
     const updatedItemWork = itemWork.map((work) => {
       return {
         ...work,
         items: work.items.map((item) =>
-          item.id === updatedItem.id ? updatedItem : item
+          item.uniqueId === updatedItem.uniqueId ? updatedItem : item
         ),
       };
     });
