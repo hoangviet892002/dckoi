@@ -11,7 +11,7 @@ const ModalPayment = ({ payment }) => {
     try {
       const item: PaymentRequest = {
         maintenanceRequestId: payment.id,
-        returnUrl: "http://localhost:5173/payment/response",
+        returnUrl: `${window.location.origin}/payment/response`,
       };
 
       const response = await createPayment(item);

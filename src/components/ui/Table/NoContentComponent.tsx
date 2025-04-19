@@ -24,7 +24,7 @@ const NoContentComponent: React.FC<NoContentProps> = ({
         />
       </svg>
     )}
-    <p className="text-gray-500">{text ? text : `No ${name} found.`}</p>
+    <p className="text-gray-500">{`Không có dữ liệu`}</p>
   </div>
 );
 export default NoContentComponent;
