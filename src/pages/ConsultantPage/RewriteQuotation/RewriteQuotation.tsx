@@ -102,10 +102,15 @@ const RewriteQuotation = () => {
           unit: "Chiếc",
         }));
 
+      // add uniqueId for each item
+
       const fieldQuotationDetailType: FieldQuotationDetailType[] = [
         ...servicesInCategory,
         ...equipmentsInCategory,
-      ];
+      ].map((item) => ({
+        ...item,
+        uniqueId: uuidv4(),
+      }));
 
       const totalPrice = fieldQuotationDetailType.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -215,6 +220,7 @@ const RewriteQuotation = () => {
           type: "",
           category: item.category,
           note: item.note,
+          uniqueId: uuidv4(),
         };
       });
 
@@ -231,6 +237,7 @@ const RewriteQuotation = () => {
           quantity: item.quantity,
           category: item.category,
           note: item.note,
+          uniqueId: uuidv4(),
         };
       });
     //  build data
@@ -263,6 +270,7 @@ const RewriteQuotation = () => {
       category: category,
       note: "",
       isService: true,
+      uniqueId: uuidv4(),
     };
 
     const itemWorkClone = [...itemWork];
