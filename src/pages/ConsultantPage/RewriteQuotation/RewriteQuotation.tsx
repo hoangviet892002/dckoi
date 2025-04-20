@@ -459,7 +459,22 @@ const RewriteQuotation = () => {
         onOk={() => setOpenServices(false)}
         footer={[]}
       >
-        <Table<ServiceType> dataSource={serviceTable.data}>
+        <Table<ServiceType>
+          dataSource={serviceTable.data}
+          pagination={{
+            pageSize: 10,
+            total: serviceTable.totalRecords,
+            showTotal: (total, range) => `Tổng ${total} dịch vụ`,
+            onChange: (page, pageSize) => {
+              dispatch(
+                serviceActions.fetchService({
+                  pageNumber: page,
+                  pageSize: pageSize,
+                })
+              );
+            },
+          }}
+        >
           <Column title="Tên dịch vụ" dataIndex="name" key="name" />
           <Column title="Mô tả" dataIndex="description" key="description" />
 
@@ -484,7 +499,22 @@ const RewriteQuotation = () => {
         onOk={() => setOpenEquipments(false)}
         footer={[]}
       >
-        <Table<EquipmentType> dataSource={equipmentTable.data}>
+        <Table<EquipmentType>
+          dataSource={equipmentTable.data}
+          pagination={{
+            pageSize: 10,
+            total: equipmentTable.totalRecords,
+            showTotal: (total, range) => `Tổng ${total} thiết bị`,
+            onChange: (page, pageSize) => {
+              dispatch(
+                equipmentActions.fetchEquipment({
+                  pageNumber: page,
+                  pageSize: pageSize,
+                })
+              );
+            },
+          }}
+        >
           <Column title="Tên thiết bị" dataIndex="name" key="name" />
           <Column title="Mô tả" dataIndex="description" key="description" />
 
