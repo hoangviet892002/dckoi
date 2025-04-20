@@ -46,14 +46,7 @@ const SelectForm = ({ visible, setVisible, result, area, depth }) => {
         const request: ProjectRequest = {
           customerName: values.customerName,
           note: values.note,
-          address:
-            values.address +
-            ", " +
-            values.ward +
-            ", " +
-            values.district +
-            ", " +
-            city.name_with_type,
+          address: values.address,
           phone: values.phone,
           email: values.email,
           area: values.area,
