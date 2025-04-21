@@ -111,28 +111,39 @@ const ProjectDetail = () => {
         <List
           itemLayout="horizontal"
           dataSource={packageMaintaiceState.packageMaintainItems.data}
-          renderItem={(item) => (
-            <List.Item
-              actions={[
-                <Button
-                  type="primary"
-                  onClick={async () => {
-                    const res = await finishProject(id, item.id);
+          renderItem={(item) => {
+            const [loading, setLoading] = React.useState(false);
 
-                    if (res.isSuccess) {
-                      navigate("/manager");
-                    } else {
-                      messageError(res.message);
-                    }
-                  }}
-                >
-                  Chọn
-                </Button>,
-              ]}
-            >
-              <List.Item.Meta title={item.name} />
-            </List.Item>
-          )}
+            return (
+              <List.Item
+                actions={[
+                  <Button
+                    type="primary"
+                    loading={loading}
+                    onClick={async () => {
+                      setLoading(true);
+                      try {
+                        const res = await finishProject(id, item.id);
+                        if (res.isSuccess) {
+                          navigate("/manager");
+                        } else {
+                          messageError(res.message);
+                        }
+                      } catch (error) {
+                        messageError("Đã có lỗi xảy ra.");
+                      } finally {
+                        setLoading(false);
+                      }
+                    }}
+                  >
+                    Chọn
+                  </Button>,
+                ]}
+              >
+                <List.Item.Meta title={item.name} />
+              </List.Item>
+            );
+          }}
         />
       </Modal>
     </div>

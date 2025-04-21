@@ -1,5 +1,5 @@
 import { ProjectType } from "@/models";
-import { Button, Card, Modal } from "antd";
+import { Avatar, Button, Card, List, Modal } from "antd";
 import React, { useState } from "react";
 import EditLocationIcon from "@mui/icons-material/EditLocation";
 import DrawIcon from "@mui/icons-material/Draw";
@@ -11,6 +11,7 @@ import { messageError } from "@/components";
 import { projectActions } from "@/redux/slices/project/projectSlices";
 import { RoleUser } from "@/models/enums/RoleUser";
 import { useNavigate } from "react-router-dom";
+import { UserOutlined } from "@ant-design/icons";
 const DesignCard = ({
   imageUrl,
   customerName,
@@ -54,39 +55,33 @@ const DesignCard = ({
     return (
       <Modal
         visible={visible}
-        title="Chọn quản lí"
+        title="Chọn thiết kế"
         onCancel={() => setVisible(false)}
         footer={null}
       >
-        <div className="flex flex-row justify-between items-center">
-          {/* no. , staff code, fullName, action*/}
-          <Typography.Text strong aria-level={2}>
-            <label>STT</label>
-          </Typography.Text>
-          <div className="flex items-center gap-2 w-36">
-            <span className="text-sm font-medium">Họ và tên</span>
-          </div>
-          <label>Thao tác</label>
-        </div>
-        <div>
-          {managers.data.map((manager, index) => (
-            <div
-              key={manager.id}
-              className="flex flex-row justify-between items-center"
+        <List
+          itemLayout="horizontal"
+          dataSource={managers.data}
+          renderItem={(item) => (
+            <List.Item
+              actions={[
+                <Button
+                  type="primary"
+                  onClick={() => handleAddDesigner(item.id)}
+                  loading={loading}
+                >
+                  Chọn
+                </Button>,
+              ]}
             >
-              <label>{index + 1}</label>
-              <div className="flex items-center gap-2 w-36">
-                <span className="text-sm">{manager.fullName}</span>
-              </div>
-              <Button
-                type="primary"
-                onClick={() => handleAddDesigner(manager.id)}
-              >
-                Chọn
-              </Button>
-            </div>
-          ))}
-        </div>
+              <List.Item.Meta
+                avatar={<Avatar icon={<UserOutlined />} />}
+                title={item.fullName}
+                description={item.email}
+              />
+            </List.Item>
+          )}
+        />
       </Modal>
     );
   };

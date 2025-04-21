@@ -1,5 +1,5 @@
 import { Staff } from "@/models/ProjectType";
-import { Button, Modal, Pagination, Table, Typography } from "antd";
+import { Button, List, Modal, Pagination, Table, Typography } from "antd";
 import React, { useState } from "react";
 import { AntDesignOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Divider, Tooltip } from "antd";
@@ -42,37 +42,30 @@ const Staff = ({ staff }: { staff: Staff[] }) => {
         onCancel={() => setVisible(false)}
         footer={null}
       >
-        <div className="flex flex-row justify-between items-center">
-          {/* no. , staff code, fullName, action*/}
-          <Typography.Text strong aria-level={2}>
-            <label>STT</label>
-          </Typography.Text>
-          <div className="flex items-center gap-2 w-36">
-            <span className="text-sm font-medium">Họ và tên</span>
-          </div>
-          <label>Thao tác</label>
-        </div>
-        <div>
-          {optionStaff.staffs.data.map((staff, index) => (
-            <div
-              key={staff.id}
-              className="flex flex-row justify-between items-center"
+        <List
+          itemLayout="horizontal"
+          dataSource={optionStaff.staffs.data}
+          renderItem={(item) => (
+            <List.Item
+              actions={[
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    handleSelectStaff(item.id);
+                  }}
+                >
+                  Chọn
+                </Button>,
+              ]}
             >
-              <label>{index + 1}</label>
-              <div className="flex items-center gap-2 w-36">
-                <span className="text-sm">{staff.fullName}</span>
-              </div>
-              <Button
-                type="primary"
-                onClick={() => {
-                  handleSelectStaff(staff.id);
-                }}
-              >
-                Chọn
-              </Button>
-            </div>
-          ))}
-        </div>
+              <List.Item.Meta
+                avatar={<Avatar icon={<UserOutlined />} />}
+                title={item.fullName}
+                description={item.email}
+              />
+            </List.Item>
+          )}
+        />
 
         <Pagination
           current={optionStaff.staffs.pageNumber}

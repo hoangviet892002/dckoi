@@ -57,6 +57,7 @@ import { PromotionType } from "@/models/PromotionType";
 import { promotionActions } from "@/redux/slices/promotion/promotionSlices";
 import { set } from "date-fns";
 import { select } from "redux-saga/effects";
+import { createQuotation } from "@/api/quotation";
 
 const CreateQuotation = () => {
   const { Column } = Table;
@@ -244,11 +245,16 @@ const CreateQuotation = () => {
       promotionId: selectedPromotion?.id || null,
     };
 
-    await dispatch(quotationActions.createQuotation(data));
-    dispatch(
-      templateConstructionDetailActions.resetTemplateConstructionDetail()
-    );
-    navigate(`/consultant/${id}`);
+    const res = await createQuotation(data);
+    if (res.isSuccess) {
+      messageError("Tạo báo giá thành công");
+      dispatch(
+        templateConstructionDetailActions.resetTemplateConstructionDetail()
+      );
+      navigate(`/consultant/${id}`);
+    } else {
+      messageError(res.message);
+    }
   };
 
   const handleAddServicesToItem = (item: ServiceType) => {

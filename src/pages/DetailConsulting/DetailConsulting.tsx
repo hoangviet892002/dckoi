@@ -88,7 +88,11 @@ const DetailConsulting = () => {
   const packageDetail = item.package;
 
   const handleDetailQuotation = (quotation: QuotationProjectType) => {
-    if (quotation.status === QuotationStatus.OPEN) {
+    if (
+      quotation.status === QuotationStatus.OPEN ||
+      quotation.status === QuotationStatus.CANCELLED ||
+      quotation.status === QuotationStatus.REJECTED
+    ) {
       messageError("Bạn chưa có quyền xem báo giá này.");
     } else {
       dispatch(quotationDetailActions.fetchQuotationDetail(quotation.id));
