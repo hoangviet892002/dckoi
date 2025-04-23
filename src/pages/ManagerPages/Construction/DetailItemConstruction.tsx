@@ -25,6 +25,7 @@ import {
   Dropdown,
   Form,
   Input,
+  List,
   Menu,
   Modal,
   Pagination,
@@ -394,36 +395,44 @@ const DetailItemConstruction = ({ openModal, setOpenModal }) => {
         onOk={() => setIsAssign(false)}
         footer={null}
       >
-        <div className="flex flex-row justify-between items-center">
-          <Typography.Text strong aria-level={2}>
-            <label>STT</label>
-          </Typography.Text>
-          <div className="flex items-center gap-2 w-36">
-            <span className="text-sm font-medium">Họ và tên</span>
-          </div>
-          <label>Thao tác</label>
-        </div>
-        <div>
-          {constructors.staffs.data.map((staff, index) => (
-            <div
-              key={staff.id}
-              className="flex flex-row justify-between items-center"
+        <List
+          itemLayout="horizontal"
+          dataSource={constructors.staffs.data}
+          renderItem={(item) => (
+            <List.Item
+              actions={[
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    handleAssignStaff(item.id);
+                  }}
+                >
+                  Chọn
+                </Button>,
+              ]}
             >
-              <label>{index + 1}</label>
-              <div className="flex items-center gap-2 w-36">
-                <span className="text-sm">{staff.fullName}</span>
-              </div>
-              <Button
-                type="primary"
-                onClick={() => {
-                  handleAssignStaff(staff.id);
-                }}
-              >
-                Chọn
-              </Button>
-            </div>
-          ))}
-        </div>
+              <List.Item.Meta
+                avatar={<Avatar icon={<UserOutlined />} />}
+                title={item.fullName}
+                description={item.email}
+              />
+            </List.Item>
+          )}
+        />
+
+        <Pagination
+          current={constructors.staffs.pageNumber}
+          pageSize={constructors.staffs.pageSize}
+          total={constructors.staffs.totalRecords}
+          onChange={(page, pageSize) => {
+            dispatch(
+              staffActions.fetchConstructorStaff({
+                pageNumber: page,
+                pageSize: pageSize,
+              })
+            );
+          }}
+        />
       </Modal>
       <ReportTask open={visibleReport} setOpen={setVisibleReport} />
     </Modal>

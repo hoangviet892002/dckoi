@@ -85,11 +85,6 @@ const LayoutAdmin: React.FC<IndexProps> = ({ Page }) => {
       icon: <PeopleIcon />,
     },
     {
-      link: "/admin/users",
-      children: "Tài khoản",
-      icon: <PersonIcon />,
-    },
-    {
       link: "/admin/management-packages",
       children: "Gói thi công",
       icon: <CardGiftcardIcon />,

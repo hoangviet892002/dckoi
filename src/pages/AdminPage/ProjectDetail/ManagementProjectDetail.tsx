@@ -65,6 +65,8 @@ const ManagementProjectDetail = () => {
 
       <Divider orientation="left">5. Bản vẽ thiết kể</Divider>
       {project.detail.status != ProjectStatus.DESIGNING &&
+        project.detail.status != ProjectStatus.PROCESSING &&
+        project.detail.status != ProjectStatus.REQUESTING &&
         (design.loading ? <Loading /> : <Design designs={design.designs} />)}
 
       <Divider orientation="left">6. Tiến trình thi công</Divider>
