@@ -1,4 +1,4 @@
-import { messageError, Title } from "@/components";
+import { messageError, messageSuccess, Title } from "@/components";
 import {
   equipmentActions,
   selectEquipment,
@@ -247,7 +247,7 @@ const CreateQuotation = () => {
 
     const res = await createQuotation(data);
     if (res.isSuccess) {
-      messageError("Tạo báo giá thành công");
+      messageSuccess("Tạo báo giá thành công");
       dispatch(
         templateConstructionDetailActions.resetTemplateConstructionDetail()
       );
