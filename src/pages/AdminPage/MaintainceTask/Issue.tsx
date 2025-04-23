@@ -134,7 +134,7 @@ const Issue = () => {
       }
     },
     values: {
-      name: `Sự cố ngày ${dayjs().format("DD/MM/YYYY")}`,
+      name: `bất thường ngày ${dayjs().format("DD/MM/YYYY")}`,
       description: "",
       estimateAt: dayjs().format("YYYY-MM-DD"),
       issueImage: "",
@@ -258,7 +258,7 @@ const Issue = () => {
 
     return (
       <Modal
-        title="Cập nhật sự cố"
+        title="Cập nhật bất thường"
         open={openUpdateIssue}
         onCancel={() => {
           setOpenUpdateIssue(false);
@@ -324,7 +324,7 @@ const Issue = () => {
     });
     return (
       <Modal
-        title="Từ chối sự cố"
+        title="Từ chối bất thường"
         open={visibleDeny}
         onCancel={() => {
           setVisibleDeny(false);
@@ -353,7 +353,7 @@ const Issue = () => {
   };
   return (
     <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-      <Card title="Danh sách sự cố" className="mb-4">
+      <Card title="Danh sách bất thường" className="mb-4">
         {/* button post issue */}
 
         {detail.status === MaintainceStatus.PROCESSING && (
@@ -364,7 +364,7 @@ const Issue = () => {
                 setVisible(true);
               }}
             >
-              Đăng sự cố
+              Đăng bất thường
             </Link>
           </div>
         )}
@@ -383,7 +383,7 @@ const Issue = () => {
       </Card>
 
       <Modal
-        title="Đăng sự cố"
+        title="Đăng bất thường"
         open={visible}
         onCancel={() => {
           setVisible(false);
@@ -399,7 +399,7 @@ const Issue = () => {
         </Form.Item>
         <Form.Item label="Hình ảnh">
           <Uploader
-            buttonText="Gửi sự cố"
+            buttonText="Gửi bất thường"
             maxFiles={1}
             onUploadSuccess={(urls) => {
               formik.setFieldValue("issueImage", urls[0]);
@@ -412,7 +412,7 @@ const Issue = () => {
       </Modal>
 
       <Modal
-        title="Chi tiết sự cố"
+        title="Chi tiết bất thường"
         loading={loadingDetail}
         open={visibleDetail}
         onCancel={() => {
@@ -420,7 +420,7 @@ const Issue = () => {
         }}
         footer={null}
       >
-        <Form.Item label="Tên sự cố">
+        <Form.Item label="Tên bất thường">
           <Text>{issue?.name}</Text>
         </Form.Item>
         <Form.Item label="Nội dung">
@@ -548,7 +548,7 @@ const Issue = () => {
               }}
               trigger={["click"]}
             >
-              <Button type="primary">Xử lí sự cố</Button>
+              <Button type="primary">Xử lí bất thường</Button>
             </Dropdown>
             <Button
               type="primary"
@@ -557,7 +557,7 @@ const Issue = () => {
                 setOpenUpdateIssue(true);
               }}
             >
-              Cập nhật sự cố
+              Cập nhật bất thường
             </Button>
           </div>
         )}
@@ -570,7 +570,7 @@ const Issue = () => {
                 confirmAlert({
                   title: "Xác nhận",
                   message:
-                    "Bạn có chắc chắn muốn chấp nhận xử lí sự cố này không?",
+                    "Bạn có chắc chắn muốn chấp nhận xử lí bất thường này không?",
                   yes: async () => {
                     const res = await updateIssueMaintenance(issue?.id, {
                       status: "DONE",
