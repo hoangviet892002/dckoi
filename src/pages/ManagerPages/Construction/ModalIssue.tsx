@@ -28,6 +28,7 @@ import {
   Select,
   Table,
   Button as ButtonAndt,
+  Descriptions,
 } from "antd";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -362,84 +363,83 @@ const ModalIssue = ({ issue, idItem }) => {
       </Modal>
 
       <Modal
-        visible={visibleDetail}
+        open={visibleDetail}
         onCancel={() => setVisibleDetail(false)}
         footer={null}
         title="Chi tiết vấn đề"
       >
-        <Form layout="vertical">
-          <Form.Item label="Tên vấn đề">
-            <Input value={selectIssue?.name} disabled />
-          </Form.Item>
-          <Form.Item label="Mô tả">
-            <Input.TextArea value={selectIssue?.description} disabled />
-          </Form.Item>
-          <Form.Item label="Nguyên nhân">
-            <Input.TextArea value={selectIssue?.cause} disabled />
-          </Form.Item>
-          <Form.Item label="Giải pháp">
-            <Input.TextArea value={selectIssue?.solution} disabled />
-          </Form.Item>
-          <Form.Item label="Loại vấn đề">
-            <Input value={selectIssue?.issueType} disabled />
-          </Form.Item>
-
-          <Form.Item label="Thời gian dự kiến">
-            <Input value={selectIssue?.estimateAt} disabled />
-          </Form.Item>
-          <Form.Item label="Thời gian thực tế">
-            <Input value={selectIssue?.actualAt} disabled />
-          </Form.Item>
-
-          <Form.Item label="Hình ảnh xác nhận">
-            {selectIssue?.confirmImage && (
+        <Descriptions bordered column={1}>
+          <Descriptions.Item label="Tên vấn đề">
+            {selectIssue?.name}
+          </Descriptions.Item>
+          <Descriptions.Item label="Mô tả">
+            {selectIssue?.description}
+          </Descriptions.Item>
+          <Descriptions.Item label="Nguyên nhân">
+            {selectIssue?.cause}
+          </Descriptions.Item>
+          <Descriptions.Item label="Giải pháp">
+            {selectIssue?.solution}
+          </Descriptions.Item>
+          <Descriptions.Item label="Loại vấn đề">
+            {selectIssue?.issueType}
+          </Descriptions.Item>
+          <Descriptions.Item label="Thời gian dự kiến">
+            {selectIssue?.estimateAt}
+          </Descriptions.Item>
+          <Descriptions.Item label="Thời gian thực tế">
+            {selectIssue?.actualAt}
+          </Descriptions.Item>
+          {selectIssue?.issueImage && (
+            <Descriptions.Item label="Hình ảnh vấn đề">
               <Image
                 width={100}
-                src={selectIssue?.confirmImage}
+                src={selectIssue.issueImage}
+                alt="Hình ảnh vấn đề"
+              />
+            </Descriptions.Item>
+          )}
+          {selectIssue?.confirmImage && (
+            <Descriptions.Item label="Hình ảnh xác nhận">
+              <Image
+                width={100}
+                src={selectIssue.confirmImage}
                 alt="Hình ảnh xác nhận"
               />
-            )}
-          </Form.Item>
-
-          {selectIssue?.status === IssueStatus.PREVIEWING && (
-            <div className="flex gap-2">
-              <ButtonAndt
-                type="primary"
-                onClick={async () => {
-                  confirmWarning({
-                    message: "Bạn có chắc chắn muốn xác nhận vấn đề?",
-                    title: "Xác nhận",
-                    yes: async () => {
-                      const res = await confirmIssue(selectIssue.id);
-                      if (res.isSuccess) {
-                        messageSuccess("Xác nhận vấn đề thành công");
-                        await dispatch(
-                          projectStateDetailActions.fetchIssueConstructionItem({
-                            idProject: id,
-                            idConstructionItem: idItem,
-                          })
-                        );
-                      }
-
-                      setVisibleDetail(false);
-                    },
-                  });
-                }}
-              >
-                Xác nhận
-              </ButtonAndt>
-              <ButtonAndt
-                type="primary"
-                onClick={() => {
-                  setOpen(true);
-                  // setSelectIssue(selectIssue);
-                }}
-              >
-                Từ chối
-              </ButtonAndt>
-            </div>
+            </Descriptions.Item>
           )}
-        </Form>
+        </Descriptions>
+        {selectIssue?.status === "PREVIEWING" && (
+          <div style={{ marginTop: 16, textAlign: "right" }}>
+            <Button
+              type="primary"
+              onClick={async () => {
+                confirmWarning({
+                  message: "Bạn có chắc chắn muốn xác nhận vấn đề?",
+                  title: "Xác nhận",
+                  yes: async () => {
+                    const res = await confirmIssue(selectIssue.id);
+                    if (res.isSuccess) {
+                      messageSuccess("Xác nhận vấn đề thành công");
+                      await dispatch(
+                        projectStateDetailActions.fetchIssueConstructionItem({
+                          idProject: id,
+                          idConstructionItem: idItem,
+                        })
+                      );
+                      setVisibleDetail(false);
+                    }
+                  },
+                });
+              }}
+            >
+              Xác nhận
+            </Button>
+            <Button style={{ marginLeft: 8 }} onClick={() => setOpen(true)}>
+              Từ chối
+            </Button>
+          </div>
+        )}
         {ModalDeny()}
       </Modal>
     </div>
