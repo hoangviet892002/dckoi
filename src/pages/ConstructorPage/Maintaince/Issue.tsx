@@ -87,7 +87,7 @@ const Issue = () => {
   }, [dispatch, status]);
   return (
     <div>
-      <Title name="Sự cố" />
+      <Title name="Bất thường" />
       <div>
         <Select
           value={status}
@@ -125,7 +125,7 @@ const Issue = () => {
         width={800}
       >
         <Card
-          title="Thông tin sự cố"
+          title="Thông tin bất thường"
           style={{ marginBottom: 20 }}
           loading={issues.detail.loading}
         >

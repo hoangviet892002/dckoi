@@ -109,7 +109,7 @@ const Issue = () => {
       }
     },
     values: {
-      name: `Sự cố ngày ${dayjs().format("DD/MM/YYYY")}`,
+      name: `Bất thường ngày ${dayjs().format("DD/MM/YYYY")}`,
       description: "",
       estimateAt: dayjs().format("YYYY-MM-DD"),
       issueImage: "",
@@ -131,7 +131,7 @@ const Issue = () => {
   }, []);
   return (
     <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-      <Card title="Danh sách sự cố" className="mb-4">
+      <Card title="Danh sách bất thường" className="mb-4">
         {/* button post issue */}
 
         {detail.status === MaintainceStatus.PROCESSING && (
