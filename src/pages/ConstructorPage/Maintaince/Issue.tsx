@@ -211,7 +211,7 @@ const Issue = () => {
             <Descriptions.Item label="Hình ảnh xử lí">
               {issues.issue.detail.detail.confirmImage ? (
                 <Image
-                  src={issues.issue.detail.detail.issueImage}
+                  src={issues.issue.detail.detail.confirmImage}
                   width={200}
                   height={200}
                 />

@@ -412,6 +412,7 @@ const ModalIssue = ({ issue, idItem }) => {
         {selectIssue?.status === "PREVIEWING" && (
           <div style={{ marginTop: 16, textAlign: "right" }}>
             <Button
+              title="Xác nhận"
               type="primary"
               onClick={async () => {
                 confirmWarning({
@@ -435,7 +436,11 @@ const ModalIssue = ({ issue, idItem }) => {
             >
               Xác nhận
             </Button>
-            <Button style={{ marginLeft: 8 }} onClick={() => setOpen(true)}>
+            <Button
+              style={{ marginLeft: 8 }}
+              onClick={() => setOpen(true)}
+              title="Từ chối"
+            >
               Từ chối
             </Button>
           </div>
