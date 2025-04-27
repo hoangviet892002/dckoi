@@ -332,7 +332,15 @@ const PackageMaintance = () => {
                   className="mb-4"
                   label="Ngày dự kiến"
                   views={["year", "month", "day"]}
+                  minDate={dayjs()}
+                  maxDate={dayjs().add(7, "days")}
                   value={dayjs(formik.values.estimateAt)}
+                  shouldDisableDate={(date) => {
+                    return (
+                      date.isBefore(dayjs(), "day") ||
+                      date.isAfter(dayjs().add(7, "day"), "day")
+                    );
+                  }}
                   onChange={(date) => formik.setFieldValue("estimateAt", date)}
                 />
               </DemoContainer>
