@@ -118,6 +118,7 @@ const InformationContract = ({
       <Uploader
         buttonText="Gửi hợp đồng"
         listType="text"
+        accept=".docx"
         maxFiles={1}
         onUploadSuccess={(urls) => {
           formik.setFieldValue("url", urls[0]);
@@ -125,6 +126,8 @@ const InformationContract = ({
             formik.handleSubmit();
           });
         }}
+        address={project.address}
+        customerName={formik.values.customerName}
       />
 
       {/* <div>

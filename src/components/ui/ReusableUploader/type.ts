@@ -7,4 +7,6 @@ export interface ReusableUploaderProps {
   accept?: ".pdf" | ".docx" | ".txt" | "image/*";
   listType?: "text" | "picture" | "picture-card";
   disabled?: boolean;
+  address?: string;
+  customerName?: string;
 }

@@ -14,6 +14,8 @@ import {
 import { TaskStage } from "@/models/enums/TaskStage";
 import { HolidayType } from "@/models/HolidayType";
 import numeral from "numeral";
+import PizZip from "pizzip";
+import Docxtemplater from "docxtemplater";
 
 export const formatDate = (date: Date, includeTime = false): string => {
   const options: Intl.DateTimeFormatOptions = includeTime
@@ -383,4 +385,25 @@ function result(format: string, key = ".00") {
   const isInteger = format.includes(key);
 
   return isInteger ? format.replace(key, "") : format;
+}
+
+async function fillDocxTemplate(file: File, data: Record<string, string>) {
+  const content = await file.arrayBuffer();
+  const zip = new PizZip(content);
+  const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+  doc.setData(data);
+  try {
+    doc.render();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+  const output = doc
+    .getZip()
+    .generate({
+      type: "blob",
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    });
+  return output;
 }
