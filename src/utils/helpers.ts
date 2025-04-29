@@ -42,9 +42,9 @@ export function parseDate(inputStr: string): string {
   const minutes = String(date.getMinutes()).padStart(2, "0");
   const seconds = String(date.getSeconds()).padStart(2, "0");
 
-  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  return `${day}/${month}/${year}`;
 }
-
+ß;
 export const dateDDMMYYY = (inputStr: string): string => {
   const date = new Date(inputStr);
 
@@ -398,12 +398,10 @@ async function fillDocxTemplate(file: File, data: Record<string, string>) {
     console.error(error);
     throw error;
   }
-  const output = doc
-    .getZip()
-    .generate({
-      type: "blob",
-      mimeType:
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    });
+  const output = doc.getZip().generate({
+    type: "blob",
+    mimeType:
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  });
   return output;
 }
