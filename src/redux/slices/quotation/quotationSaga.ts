@@ -114,7 +114,7 @@ function* rewriteQuotationWorker(action: PayloadAction<QuotationRequest>) {
 
     if (data.isSuccess) {
       messageSuccess("Báo giá đã gửi thành công");
-      yield put(quotationActions.rewriteQuotation(data));
+      // yield put(quotationActions.rewriteQuotation(data));
 
       const quotaitonProjectState: QuotaitonProjectState = yield select(
         (state) => state.quotationProject
@@ -143,7 +143,7 @@ function* updateQuotationWorker(action: PayloadAction<QuotationRequest>) {
 
     if (data.isSuccess) {
       messageSuccess("Báo giá đã gửi thành công");
-      yield put(quotationActions.updateQuotation(data));
+      // yield put(quotationActions.updateQuotation(data));
 
       const quotaitonProjectState: QuotaitonProjectState = yield select(
         (state) => state.quotationProject
