@@ -128,6 +128,10 @@ const InformationContract = ({
         }}
         address={project.address}
         customerName={formik.values.customerName}
+        area={project.area}
+        depth={project.depth}
+        totalValue={formik.values.contractValue}
+        phone={project.phone}
       />
 
       {/* <div>

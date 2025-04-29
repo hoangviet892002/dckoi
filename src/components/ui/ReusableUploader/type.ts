@@ -9,4 +9,9 @@ export interface ReusableUploaderProps {
   disabled?: boolean;
   address?: string;
   customerName?: string;
+  phone?: string;
+  area?: number;
+
+  depth?: number;
+  totalValue?: string;
 }

@@ -21,6 +21,10 @@ const ReusableUploader: React.FC<ReusableUploaderProps> = ({
   disabled = false,
   address,
   customerName,
+  phone,
+  area,
+  depth,
+  totalValue,
 }) => {
   type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -106,6 +110,10 @@ const ReusableUploader: React.FC<ReusableUploaderProps> = ({
               benA_position: "Giám đốc",
               benB_address: address,
               benB_representative: customerName,
+              benB_phone: phone,
+              area: area,
+              depth: depth,
+              totalValue: totalValue,
             });
 
             try {
@@ -191,6 +199,10 @@ const ReusableUploader: React.FC<ReusableUploaderProps> = ({
               benA_position: "Giám đốc",
               benB_address: address,
               benB_representative: customerName,
+              benB_phone: phone,
+              area: area,
+              depth: depth,
+              totalValue: totalValue,
             });
 
             try {
