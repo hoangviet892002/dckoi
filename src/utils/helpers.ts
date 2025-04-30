@@ -44,7 +44,6 @@ export function parseDate(inputStr: string): string {
 
   return `${day}/${month}/${year}`;
 }
-ß;
 export const dateDDMMYYY = (inputStr: string): string => {
   const date = new Date(inputStr);
 
