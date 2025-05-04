@@ -80,6 +80,18 @@ const DesignCard = ({
               />
             </List.Item>
           )}
+          pagination={{
+            pageSize: 10,
+            total: managers.totalRecords,
+            onChange: (page) => {
+              dispatch(
+                staffActions.fetchManagerStaff({
+                  pageNumber: page,
+                  pageSize: 10,
+                })
+              );
+            },
+          }}
         />
       </Modal>
     );
