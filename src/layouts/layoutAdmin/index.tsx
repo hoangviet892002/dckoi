@@ -106,7 +106,7 @@ const LayoutAdmin: React.FC<IndexProps> = ({ Page }) => {
     },
     {
       link: "/admin/template-construction",
-      children: "Template Construction",
+      children: "Mẫu thi công",
       icon: <LibraryBooksIcon />,
     },
   ];

@@ -26,7 +26,7 @@ const Staff = ({
 
   const handleOpenOption = () => {
     dispatch(
-      staffActions.fetchConstructorStaff({ pageNumber: 1, pageSize: 5 })
+      staffActions.fetchConstructorStaff({ pageNumber: 1, pageSize: 10 })
     );
     setVisible(true);
   };
@@ -77,6 +77,21 @@ const Staff = ({
               />
             </List.Item>
           )}
+        />
+
+        <Pagination
+          pageSize={optionStaff.staffs.pageSize}
+          total={optionStaff.staffs.totalRecords}
+          current={optionStaff.staffs.pageNumber}
+          onChange={(page, pageSize) => {
+            dispatch(
+              staffActions.fetchConstructorStaff({
+                pageNumber: page,
+                pageSize: pageSize,
+              })
+            );
+          }}
+          style={{ marginTop: "20px", textAlign: "right" }}
         />
       </Modal>
     );

@@ -1,6 +1,6 @@
 import { postDocs } from "@/api/docs";
 import { getDocsType } from "@/api/docsType";
-import { Uploader } from "@/components";
+
 import useForm from "@/hooks/useForm";
 import { DocsProjectType, DocsType } from "@/models/DocsType";
 import { DocsRequest } from "@/models/Request/DocsRequest";
@@ -19,12 +19,17 @@ import {
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ReusableUploader from "./ReusableUploader";
 
 const Docs = () => {
   const { id } = useParams();
   const docs = useAppSelector((state) => state.projectStateDetail.docs);
   const [docsType, setDocsType] = useState<DocsType[]>([]);
+  const project = useAppSelector((state) => state.projectStateDetail.project);
+
   const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(
       projectStateDetailActions.fetchDocs({
@@ -168,10 +173,17 @@ const Docs = () => {
           </Select>
         </Form.Item>
 
-        <Uploader
+        <ReusableUploader
           maxFiles={1}
           buttonText="Thêm tài liệu"
+          accept=".docx"
           onUploadSuccess={(url) => onUploadSuccess(url[0])}
+          customerName={project.detail.customerName}
+          quanliName={auth.currentUser.fullName}
+          totalPrice={project.detail.contractValue.toString()}
+          volumnProject={(
+            project.detail.area * project.detail.depth
+          ).toString()}
         />
       </Modal>
     </div>

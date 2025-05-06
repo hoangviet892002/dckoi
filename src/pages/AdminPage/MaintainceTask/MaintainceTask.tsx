@@ -19,6 +19,7 @@ import {
   Image,
   List,
   Modal,
+  Pagination,
   Space,
   Table,
   TableColumnsType,
@@ -410,6 +411,21 @@ const MaintainceTask = () => {
             </List.Item>
           )}
         />
+
+        {/* <Pagination 
+          pageSize={taskChild.staffs.pageSize}
+          total={taskChild.staffs.totalRecords}
+          current={taskChild.staffs.pageNumber}
+          onChange={(page, pageSize) => {
+            dispatch(
+              staffActions.fetchConstructorStaff({
+                pageNumber: page,
+                pageSize: pageSize,
+              })
+            );
+          }}
+
+        /> */}
       </Modal>
       <ModalDeny
         idTask={selectedTaskChild?.id}

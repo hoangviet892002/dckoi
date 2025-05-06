@@ -60,6 +60,7 @@ const initialState: ProjectStateDetail = {
       note: "",
       package: null,
       status: ProjectStatus.CONSTRUCTING,
+      contractValue: 0,
     },
   },
   design: {

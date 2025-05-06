@@ -17,7 +17,7 @@ const ConsultationPage = () => {
 
   return (
     <div className="flex flex-col justify-between items-stretch mb-5 mt-8 mx-10 min-h-full w-screen">
-      <Title name="Consultations" />
+      <Title name="Danh sách tư vấn" />
 
       <Row>
         {dataConsultation.map((item, index) => (

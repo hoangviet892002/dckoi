@@ -50,6 +50,7 @@ export interface ProjectDetailType {
   updatedDate?: string;
   staff: Staff[];
   package: PackageType;
+  contractValue?: number;
 }
 
 export interface QuotationProjectType {
