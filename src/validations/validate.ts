@@ -96,8 +96,14 @@ export const validateRequestProject = yup.object().shape({
   email: yup.string().email().required("Yêu cầu nhập email"),
   address: yup.string().required("Yêu cầu nhập địa chỉ"),
   phone: yup.number().required("Yêu cầu nhập số điện thoại"),
-  area: yup.number().required("Yêu cầu nhập diện tích"),
-  depth: yup.string().required("Yêu cầu nhập độ sâu"),
+  area: yup
+    .number()
+    .required("Yêu cầu nhập diện tích")
+    .min(8, "Diện tích không được nhỏ hơn 8"),
+  depth: yup
+    .string()
+    .required("Yêu cầu nhập độ sâu")
+    .min(1, "Độ sâu không được nhỏ hơn 1"),
   packageId: yup.string().required("Yêu cầu chọn gói dịch vụ"),
 });
 

@@ -32,6 +32,7 @@ import {
   Image,
   List,
   Modal,
+  Pagination,
   Space,
   Table,
   TableColumnsType,
@@ -666,6 +667,20 @@ const Issue = () => {
               />
             </List.Item>
           )}
+        />
+
+        <Pagination
+          total={optionStaff.staffs.totalRecords}
+          pageSize={optionStaff.staffs.pageSize}
+          current={optionStaff.staffs.pageNumber}
+          onChange={(page) => {
+            dispatch(
+              staffActions.fetchConstructorStaff({
+                pageNumber: page,
+                pageSize: 10,
+              })
+            );
+          }}
         />
       </Modal>
     </div>
