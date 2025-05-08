@@ -379,6 +379,14 @@ const Issue = () => {
             total: issueState.issues.totalRecords,
             pageSize: issueState.issues.pageSize,
             current: issueState.issues.pageNumber,
+            onChange: (page) => {
+              dispatch(
+                maintainceTaskActions.fetchIssue({
+                  filter: { pageNumber: page, pageSize: 10 },
+                  id: id,
+                })
+              );
+            },
           }}
         />
       </Card>
