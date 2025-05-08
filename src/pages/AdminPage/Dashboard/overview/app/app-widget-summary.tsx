@@ -101,11 +101,11 @@ export default function AppWidgetSummary({
             }}
           />
 
-          <Typography component="div" variant="subtitle2">
+          {/* <Typography component="div" variant="subtitle2">
             {percent > 0 && "+"}
 
             {fPercent(percent)}
-          </Typography>
+          </Typography> */}
         </Stack>
 
         <Typography variant="h3">{fNumber(total)}</Typography>

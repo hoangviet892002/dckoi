@@ -108,7 +108,7 @@ export default function OverviewAppView() {
         <Grid xs={12} md={6} lg={6}>
           <AppAreaInstalled
             title="Tổng đơn"
-            subheader="(+43%) than last year"
+            subheader=""
             chart={{
               categories: Array.from(
                 { length: 12 },
@@ -122,7 +122,7 @@ export default function OverviewAppView() {
         <Grid xs={12} md={6} lg={6}>
           <AppAreaInstalled
             title="Tổng thu nhập"
-            subheader="(+43%) than last year"
+            subheader=""
             chart={{
               categories: Array.from(
                 { length: 12 },
